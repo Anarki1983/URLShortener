@@ -11,7 +11,7 @@
 * 先不估算QPS / usage, 但保留水平擴展空間 & 高可用性
 
 ### 高階設計
-![高階設計](doc/high level design.png)
+![高階設計](doc/high_level_design.png)
 * web server 轉導 Write API & Read API
 * Write API, 負責處理寫入相關的功能, 例如: 建立短網址
 * Read API, 負責讀取相關的功能, 例如: 短網址跳轉
@@ -19,7 +19,7 @@
 * 內部溝通建議使用 gRPC, 例如: web server -> write API
 
 ### 擴展設計
-![擴展設計](doc/scale design.png)
+![擴展設計](doc/scale_design.png)
 * 加入load balancer以分散流量至web server集群
 * Write API, Read API, 可依需求做不同數量的擴展
 * 透過load balancer對Database集群進行操作
