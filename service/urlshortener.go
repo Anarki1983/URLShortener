@@ -56,9 +56,9 @@ func (s *URLShortenerService) CreateShortenURL(ctx context.Context, boReq *bo.Cr
 func genUrlId() string {
 	hd := hashids.NewData()
 	hd.Salt = "URLShortener"
-	hd.MinLength = define.UrlIdMaxLength
+	hd.MinLength = define.UrlIdLength
 	h, _ := hashids.NewWithData(hd)
 	e, _ := h.Encode([]int{rand.Int(), rand.Int(), rand.Int(), rand.Int()})
 
-	return e[:define.UrlIdMaxLength]
+	return e[:define.UrlIdLength]
 }

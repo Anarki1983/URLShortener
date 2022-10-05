@@ -18,6 +18,10 @@ func CreateShortenURLReq(ctx *gin.Context) (boReq *bo.CreateShortenURLRequest, e
 		return nil, errorx.BadRequestError
 	}
 
+	return createShortenURLReq(dtoReq)
+}
+
+func createShortenURLReq(dtoReq *dto.CreateShortenURLRequest) (boReq *bo.CreateShortenURLRequest, err *errorx.ServiceError) {
 	// verify url format
 	if _, err := url.ParseRequestURI(dtoReq.Url); err != nil {
 		return nil, errorx.InvalidParameterError
