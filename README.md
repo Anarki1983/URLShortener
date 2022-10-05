@@ -14,7 +14,7 @@
 
 --------
 ## 目錄說明
-```console
+<pre>
 URLShortener
 ├─common
 │  ├─define ----------- 常數
@@ -32,7 +32,7 @@ URLShortener
 │  ├─mock ------------- 資料層模擬 (mockgen)
 │  └─redisHelper ------ infra tool (go-redis) 
 └─service ---------- 邏輯層
-```
+</pre>
 --------
 ## 組件
 ### Redis
@@ -72,7 +72,7 @@ curl -X POST -H "Content-Type:application/json" http://localhost/api/v1/urls -d 
   * expireAt format(RFC3339) & 不可以帶入過去時間
 
 #### Response
-```console
+```json
 {
     "id": "<url_id>",
     "shortUrl": "http://localhost/<url_id>"
