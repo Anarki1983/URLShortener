@@ -14,7 +14,7 @@
 
 --------
 ## 目錄說明
-```
+<pre>
 URLShortener
 ├─common
 │  ├─define ----------- 常數
@@ -32,7 +32,7 @@ URLShortener
 │  ├─mock ------------- 資料層模擬 (mockgen)
 │  └─redisHelper ------ infra tool (go-redis) 
 └─service ---------- 邏輯層
-```
+</pre>
 --------
 ## 組件
 ### Redis
@@ -55,14 +55,13 @@ URLShortener
 
 ### go convey
 * testing 解決方案之一, 能快速建立簡潔的單元測試, 清楚的測試結果報告(web UI)
-* 搭配 golang 自帶的 go mock 使用
 ![goconvey_webui](doc/goconvey_webui.png)
 
 -------
 ## API Example
 ### Upload URL API
 #### Request
-```
+```console
 curl -X POST -H "Content-Type:application/json" http://localhost/api/v1/urls -d '{
     "url": "<original_url>",
     "expireAt": "2021-02-08T09:20:41Z"
@@ -73,7 +72,7 @@ curl -X POST -H "Content-Type:application/json" http://localhost/api/v1/urls -d 
   * expireAt format(RFC3339) & 不可以帶入過去時間
 
 #### Response
-```
+```json
 {
     "id": "<url_id>",
     "shortUrl": "http://localhost/<url_id>"
@@ -82,7 +81,7 @@ curl -X POST -H "Content-Type:application/json" http://localhost/api/v1/urls -d 
 
 ### Redirect URL API
 #### Request
-```
+```console
 curl -L -X GET http://localhost/<url_id> => REDIRECT to original URL
 ```
 * 參數限制
