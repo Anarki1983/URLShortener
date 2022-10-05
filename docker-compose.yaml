@@ -1,0 +1,18 @@
+version: '3'
+services:
+  webserver:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: webserver
+    ports:
+      - "80:80"
+    privileged: true
+    links:
+      - redis
+    tty: true
+  redis:
+    image: redis
+    container_name: redis
+    ports:
+      - "6379:6379"
