@@ -15,8 +15,12 @@ func RedirectURLReq(ctx *gin.Context) (boReq *bo.RedirectURLRequest, err *errorx
 		return nil, errorx.BadRequestError
 	}
 
+	return redirectURLReq(dtoReq)
+}
+
+func redirectURLReq(dtoReq *dto.RedirectURLRequest) (boReq *bo.RedirectURLRequest, err *errorx.ServiceError) {
 	// verify urlId format
-	if len(dtoReq.UrlId) != define.UrlIdMaxLength {
+	if len(dtoReq.UrlId) != define.UrlIdLength {
 		return nil, errorx.InvalidParameterError
 	}
 

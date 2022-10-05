@@ -24,10 +24,10 @@ URLShortener
 │      └─transform ---- DTO, BO互相轉換的邏輯
 ├─doc -------------- 文件相關
 ├─log -------------- log tool (logrus)
-├─model ------------ 各層IO使用的模組
-│  ├─bo --------------- 邏輯層IO模組 
-│  ├─dto -------------- 傳輸層IO模組 
-│  └─po --------------- 資料層IO模組 & ORM模組 
+├─model
+│  ├─bo --------------- 邏輯層IO model
+│  ├─dto -------------- 傳輸層IO model
+│  └─po --------------- 資料層IO model & ORM model  
 ├─repo ------------- 資料層
 │  ├─mock ------------- 資料層模擬 (mockgen)
 │  └─redisHelper ------ infra tool (go-redis) 
