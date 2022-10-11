@@ -20,9 +20,14 @@ type URLShortenerRepo struct {
 }
 
 func (s *URLShortenerRepo) CreateShortenURL(ctx context.Context, poReq *po.CreateShortenURLRequest) (poResp *po.CreateShortenURLResponse, err *errorx.ServiceError) {
-	_, err = redisHelper.SetNX(ctx, poReq.UrlId, poReq.Url, poReq.Duration)
+	success := false
+	success, err = redisHelper.SetNX(ctx, poReq.UrlId, poReq.Url, poReq.Duration)
 	if err != nil {
 		return nil, err
+	}
+
+	if !success {
+		return nil, errorx.CreateHashIdFailedError
 	}
 
 	return &po.CreateShortenURLResponse{
