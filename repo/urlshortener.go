@@ -1,10 +1,14 @@
 package repo
 
 import (
+	"context"
+
+	lru "github.com/hashicorp/golang-lru"
+
 	"URLShortener/common/errorx"
 	"URLShortener/model/po"
+	"URLShortener/repo/cacheHelper"
 	"URLShortener/repo/redisHelper"
-	"context"
 )
 
 // mockgen -source ./urlshortener.go -destination ./mock/urlshortener_mock.go -package mock
@@ -17,6 +21,7 @@ func NewURLShortenerRepo() *URLShortenerRepo {
 }
 
 type URLShortenerRepo struct {
+	lruCache *lru.Cache
 }
 
 func (s *URLShortenerRepo) CreateShortenURL(ctx context.Context, poReq *po.CreateShortenURLRequest) (poResp *po.CreateShortenURLResponse, err *errorx.ServiceError) {
@@ -29,6 +34,9 @@ func (s *URLShortenerRepo) CreateShortenURL(ctx context.Context, poReq *po.Creat
 	if !success {
 		return nil, errorx.CreateHashIdFailedError
 	}
+
+	// add to cache
+	cacheHelper.Add(ctx, poReq.UrlId, poReq.Url)
 
 	return &po.CreateShortenURLResponse{
 		UrlId: poReq.UrlId,

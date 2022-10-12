@@ -47,6 +47,9 @@ URLShortener
 ### gin
 * web framework, Response速度快, 性能表現好, 支援 middleware, data binding 等機制
 
+### golang-lru
+* LRU Cache, 降低redis的負載, 但在擴展service時建議搭配Load Balancer的Session Affinity使用, 以避免轉導的service未命中cache的問題
+
 ### go-redis
 * golang redis client
 
