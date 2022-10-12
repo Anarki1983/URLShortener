@@ -1,6 +1,7 @@
 package main
 
 import (
+	"URLShortener/repo/cacheHelper"
 	"context"
 	"errors"
 	"math/rand"
@@ -42,6 +43,7 @@ func Run() error {
 
 	// init infra
 	redisHelper.Init()
+	cacheHelper.Init()
 
 	ctx := context.Background()
 	if router, err := restctl.InitController(ctx); err != nil {
